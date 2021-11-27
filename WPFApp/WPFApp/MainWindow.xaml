@@ -1,0 +1,38 @@
+﻿<Window x:Class="WPFApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp"
+        mc:Ignorable="d"
+        Title="WPFApp" Height="320" Width="434" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="16*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="742*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" Content="Write your Name:" HorizontalAlignment="Center" Height="25" Grid.Row="1" VerticalAlignment="Center" Width="112"/>
+        <TextBox x:Name="Name" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <Label x:Name="Message" Grid.Column="1" Content="" HorizontalAlignment="Center" Height="25" Grid.Row="4" VerticalAlignment="Center" Width="112"/>
+        <Button x:Name="ShowMessage" Grid.Column="1" Content="Show message" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" BorderBrush="#FF3D91BA" Foreground="Black" Background="White" Click="Button_Click" IsCancel="True" IsDefault="True" RenderTransformOrigin="0.5,0.5" Height="27" Width="112">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0" Y="0"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+    </Grid>
+</Window>
