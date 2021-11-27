@@ -1,0 +1,15 @@
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ConsoleApp.exe
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ConsoleApp.deps.json
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ConsoleApp.runtimeconfig.json
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ConsoleApp.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ref\ConsoleApp.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\ConsoleApp.pdb
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.AssemblyInfo.cs
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ref\ConsoleApp.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.pdb
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.genruntimeconfig.cache
