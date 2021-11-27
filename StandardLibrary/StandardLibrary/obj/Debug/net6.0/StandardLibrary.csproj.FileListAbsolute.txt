@@ -1,0 +1,12 @@
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\bin\Debug\net6.0\StandardLibrary.deps.json
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\bin\Debug\net6.0\StandardLibrary.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\bin\Debug\net6.0\ref\StandardLibrary.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\bin\Debug\net6.0\StandardLibrary.pdb
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.csproj.AssemblyReference.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.AssemblyInfoInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.AssemblyInfo.cs
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\ref\StandardLibrary.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\StandardLibrary\StandardLibrary\obj\Debug\net6.0\StandardLibrary.pdb
