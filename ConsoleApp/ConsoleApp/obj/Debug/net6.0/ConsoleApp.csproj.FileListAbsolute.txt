@@ -13,3 +13,6 @@ C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj
 C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ref\ConsoleApp.dll
 C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.pdb
 C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.genruntimeconfig.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\StandardLibrary.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\bin\Debug\net6.0\StandardLibrary.pdb
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\ConsoleApp\ConsoleApp\obj\Debug\net6.0\ConsoleApp.csproj.CopyComplete

@@ -1,4 +1,6 @@
-﻿ShowMessage(GetName());
+﻿using StandardLibrary;
+
+ShowMessage(GetName());
 
 string GetName()
 {
@@ -11,3 +13,9 @@ void ShowMessage(string name)
 {
     Console.WriteLine($"Hello {name}!");
 }
+
+//Same task, but with standard library
+
+MessageLibrary messageLibrary = new MessageLibrary();
+
+messageLibrary.ShowMessage(GetName());
