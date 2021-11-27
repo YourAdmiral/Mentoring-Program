@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StandardLibrary;
 
 namespace WPFApp
 {
@@ -30,7 +31,13 @@ namespace WPFApp
         {
             if (Name.Text != "")
             {
-                Message.Content = $"Hello {Name.Text}!";
+                //Message.Content = $"Hello {Name.Text}!";
+
+                //Same task, but with standard library
+
+                MessageLibrary messageLibrary = new MessageLibrary();
+
+                Message.Content = messageLibrary.GetMessage(Name.Text);
             }
             else
             {

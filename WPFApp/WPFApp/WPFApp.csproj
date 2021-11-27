@@ -2,9 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StandardLibrary">
+      <HintPath>..\..\StandardLibrary\StandardLibrary\bin\Debug\net6.0\StandardLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

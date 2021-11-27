@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6rFLITFwH+b1Lwj2wTRCVYqMLp1X9FWDfHCtCpP904hzTGus9FmW7F2CmxYxD8Ii8ffs6Lck7vnqzTGU7/Qevw==",
+  "dgSpecHash": "N0KHR8FL/GAR92pH+nngDRpwautIIWcxYIZELj6n+BYbr8IYtk+oY5CjUn+kSghqegQnZY9p0tSmoVinIbrg7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\WPFApp\\WPFApp\\WPFApp.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Kiryl_Kartashou\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

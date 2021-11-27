@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\WPFApp\WPFApp\obj\Debug\net5.0-windows\
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\WPFApp\WPFApp\obj\Debug\net6.0-windows\
 WPFApp
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\WPFApp\WPFApp\App.xaml
 11407045341
 
-5-1541728505
-193-1891726104
+5-1041181291
+195765286727
 MainWindow.xaml;
 
 True

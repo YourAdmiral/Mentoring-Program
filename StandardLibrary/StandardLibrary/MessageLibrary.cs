@@ -13,5 +13,10 @@
         {
             Console.WriteLine($"Hello {name}!");
         }
+
+        public string GetMessage(string name)
+        {
+            return $"Hello {name}!";
+        }
     }
 }
