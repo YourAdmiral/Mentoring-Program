@@ -4,7 +4,7 @@ namespace Task1
 {
     public class Product
     {
-        public Product(string name, 
+        public Product(string name,
             double price)
         {
             Name = name;
@@ -17,7 +17,7 @@ namespace Task1
 
         public override bool Equals(Object obj)
         {
-            if ((obj == null) 
+            if ((obj == null)
                 || !this.GetType().Equals(obj.GetType()))
             {
                 return false;

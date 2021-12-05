@@ -4647,11 +4647,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\Debugging\\Task1.Tests\\Task1.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Kiryl_Kartashou\\Desktop\\debugging\\Task1.Tests\\Task1.Tests.csproj",
       "projectName": "Task1.Tests",
-      "projectPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\Debugging\\Task1.Tests\\Task1.Tests.csproj",
+      "projectPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\debugging\\Task1.Tests\\Task1.Tests.csproj",
       "packagesPath": "C:\\Users\\Kiryl_Kartashou\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\Debugging\\Task1.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\debugging\\Task1.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4672,8 +4672,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\Debugging\\Task1\\Task1.csproj": {
-              "projectPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\Git\\Mentoring-Program\\Debugging\\Task1\\Task1.csproj"
+            "C:\\Users\\Kiryl_Kartashou\\Desktop\\debugging\\Task1\\Task1.csproj": {
+              "projectPath": "C:\\Users\\Kiryl_Kartashou\\Desktop\\debugging\\Task1\\Task1.csproj"
             }
           }
         }
