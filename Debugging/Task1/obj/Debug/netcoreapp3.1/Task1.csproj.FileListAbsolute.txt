@@ -1,0 +1,10 @@
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\bin\Debug\netcoreapp3.1\Task1.deps.json
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\bin\Debug\netcoreapp3.1\Task1.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\bin\Debug\netcoreapp3.1\Task1.pdb
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.csproj.AssemblyReference.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.AssemblyInfoInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.AssemblyInfo.cs
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.csproj.CoreCompileInputs.cache
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.dll
+C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Debugging\Task1\obj\Debug\netcoreapp3.1\Task1.pdb
