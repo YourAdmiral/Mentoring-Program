@@ -8,6 +8,8 @@ internal class FileSystemManager
 
         var fileSystemVisitor = new FileSystemVisitor(dir);
 
+        //var fileSystemVisitor = new FileSystemVisitor(dir, file => file.Equals("Catalog"));
+
         foreach (var fileInfo in fileSystemVisitor.GetFilesInfo())
         {
             Console.WriteLine(fileInfo);

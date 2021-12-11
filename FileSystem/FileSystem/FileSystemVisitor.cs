@@ -10,9 +10,14 @@ namespace FileSystem
     {
         private DirectoryInfo _dir;
 
-        public FileSystemVisitor(string dir)
+        private Predicate<string> _filter;
+
+        public FileSystemVisitor(
+            string dir,
+            Predicate<string> filter = null)
         {
             _dir = new DirectoryInfo(dir);
+            _filter = filter;
         }
 
         public IEnumerable<FileSystemInfo> GetFilesInfo()
@@ -28,7 +33,11 @@ namespace FileSystem
             {
                 subDir = fileInfo as DirectoryInfo;
 
-                yield return fileInfo;
+                if (_filter == null 
+                    || _filter(fileInfo.Name))
+                {
+                    yield return fileInfo;
+                }
 
                 if (subDir != null)
                 {
