@@ -8,9 +8,18 @@ internal class FileSystemManager
 
         var fileSystemVisitor = new FileSystemVisitor(dir);
 
-        //var fileSystemVisitor = new FileSystemVisitor(dir, file => file.Equals("Catalog"));
+        IList<FileSystemInfo> elements = new List<FileSystemInfo>();
+
+        //var fileSystemVisitor = new FileSystemVisitor(dir, file => file.Equals("file2.txt"));
 
         foreach (var fileInfo in fileSystemVisitor.GetFilesInfo())
+        {
+            elements.Add(fileInfo);
+        }
+
+        Console.WriteLine("\nFounded files and directories:");
+
+        foreach (var fileInfo in elements)
         {
             Console.WriteLine(fileInfo);
         }
