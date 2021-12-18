@@ -91,6 +91,46 @@ namespace FileSystem
             }
         }
 
+        public void ExcludeFilesFromList(List<FileSystemInfo> list, List<FileInfo> excludedFiles)
+        {
+            foreach (FileInfo excludedFile in excludedFiles)
+            {
+                list.RemoveAll(file => 
+                !File.GetAttributes(file.FullName).HasFlag(FileAttributes.Directory) 
+                && file.FullName == excludedFile.FullName);
+            }
+        }
+
+        public void ExcludeDirectoriesFromList(List<FileSystemInfo> list, List<DirectoryInfo> excludedDirectories)
+        {
+            foreach (DirectoryInfo excludedDirectory in excludedDirectories)
+            {
+                list.RemoveAll(directory =>
+                File.GetAttributes(directory.FullName).HasFlag(FileAttributes.Directory)
+                && directory.FullName == excludedDirectory.FullName);
+            }
+        }
+
+        public void ExcludeFilesFromListByName(List<FileSystemInfo> list, List<string> excludedFiles)
+        {
+            foreach (string excludedFile in excludedFiles)
+            {
+                list.RemoveAll(file =>
+                !File.GetAttributes(file.FullName).HasFlag(FileAttributes.Directory)
+                && file.Name == excludedFile);
+            }
+        }
+
+        public void ExcludeDirectoriesFromListByName(List<FileSystemInfo> list, List<string> excludedDirectories)
+        {
+            foreach (string excludedDirectory in excludedDirectories)
+            {
+                list.RemoveAll(directory =>
+                File.GetAttributes(directory.FullName).HasFlag(FileAttributes.Directory)
+                && directory.Name == excludedDirectory);
+            }
+        }
+
         private static void DisplayMessage(string message)
         {
             Console.WriteLine(message);
