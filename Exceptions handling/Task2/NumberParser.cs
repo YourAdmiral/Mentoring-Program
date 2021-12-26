@@ -7,25 +7,13 @@ namespace Task2
     {
         public int Parse(string stringValue)
         {
-            List<int> numbers = new List<int>();
+            List<int> numbers;
 
-            long longValue = 0;
-
-            int intValue = 0;
-
-            int multiplier = 1;
+            int intValue;
 
             bool isPositive = true;
 
-            if (stringValue == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            if (stringValue.Trim() == "")
-            {
-                throw new FormatException();
-            }
+            CheckStringValidity(stringValue);
 
             stringValue = stringValue.Trim();
 
@@ -39,6 +27,72 @@ namespace Task2
 
                 isPositive = false;
             }
+
+            numbers = GetNumbersListFromString(stringValue);
+
+            intValue = GetIntFromLong(
+                GetLongFromList(numbers), 
+                isPositive);
+
+            return intValue;
+        }
+
+        private long GetLongFromList(List<int> numbers)
+        {
+            long longValue = 0;
+
+            int multiplier = 1;
+
+            for (int i = numbers.Count - 1; i >= 0; i--)
+            {
+                try
+                {
+                    numbers[i] = numbers[i] * multiplier;
+
+                    longValue += numbers[i];
+
+                    multiplier = multiplier * 10;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return longValue;
+        }
+
+        private int GetIntFromLong(long longValue, bool isPositive)
+        {
+            if (!isPositive)
+            {
+                longValue = longValue * -1;
+            }
+
+            if (longValue > int.MaxValue || longValue < int.MinValue)
+            {
+                throw new OverflowException();
+            }
+
+            return (int)longValue;
+        }
+
+        private void CheckStringValidity(string stringValue)
+        {
+            if (stringValue == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (stringValue.Trim() == "")
+            {
+                throw new FormatException();
+            }
+        }
+
+        private List<int> GetNumbersListFromString(string stringValue)
+        {
+            List<int> numbers = new List<int>();
 
             for (int i = 0; i < stringValue.Length; i++)
             {
@@ -89,36 +143,7 @@ namespace Task2
                 }
             }
 
-            for (int i = numbers.Count - 1; i >= 0; i--)
-            {
-                try
-                {
-                    numbers[i] = numbers[i] * multiplier;
-
-                    longValue += numbers[i];
-
-                    multiplier = multiplier * 10;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-            }
-
-            if (!isPositive)
-            {
-                longValue = longValue * -1;
-            }
-
-            if (longValue > int.MaxValue || longValue < int.MinValue)
-            {
-                throw new OverflowException();
-            }
-
-            intValue = (int) longValue;
-
-            return intValue;
+            return numbers;
         }
     }
 }
