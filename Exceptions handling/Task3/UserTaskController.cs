@@ -1,4 +1,5 @@
 ﻿using Task3.DoNotChange;
+using System;
 
 namespace Task3
 {
@@ -11,22 +12,31 @@ namespace Task3
             _taskService = taskService;
         }
 
-        public bool AddTaskForUser(int userId, string description, IResponseModel model)
+        public bool AddTaskForUser(
+            int userId, 
+            string description, 
+            IResponseModel model)
         {
             string message = GetMessageForModel(userId, description);
+
             if (message != null)
             {
                 model.AddAttribute("action_result", message);
+
                 return false;
             }
 
             return true;
         }
 
-        private string GetMessageForModel(int userId, string description)
+        private string GetMessageForModel(
+            int userId, 
+            string description)
         {
             var task = new UserTask(description);
+
             int result = _taskService.AddTaskForUser(userId, task);
+
             if (result == -1)
                 return "Invalid userId";
 
