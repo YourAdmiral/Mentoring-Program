@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reflection
+namespace Reflection.Providers
 {
-    internal class ConfigurationComponentBase
+    internal class FileConfigurationProvider
     {
     }
 }
