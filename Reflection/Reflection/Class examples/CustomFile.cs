@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Reflection.Class_examples
 {
-    internal class CustomFile : ConfigurationComponentBase
+    internal class CustomFile
     {
         [ConfigurationItemAttribute("Test",ProviderType.File)]
         public int Value1 { get; set; }
 
-        [ConfigurationItemAttribute("Test", ProviderType.ConfigurationManager)]
+        [ConfigurationItemAttribute("Test", ProviderType.Configuration)]
         public float Value2 { get; set; }
 
         [ConfigurationItemAttribute("Test", ProviderType.File)]
         public string Value3 { get; set; }
 
-        [ConfigurationItemAttribute("Test", ProviderType.ConfigurationManager)]
+        [ConfigurationItemAttribute("Test", ProviderType.Configuration)]
         public TimeSpan Value4 { get; set; }
 
         public CustomFile(

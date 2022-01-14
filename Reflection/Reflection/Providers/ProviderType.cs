@@ -3,6 +3,6 @@
     internal enum ProviderType
     {
         File,
-        ConfigurationManager
+        Configuration
     }
 }

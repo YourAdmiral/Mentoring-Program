@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,15 +18,17 @@ namespace Reflection.Providers
             Path = path;
         }
 
-        public void SaveSetting(ConfigurationItemAttribute setting)
+        public void SaveSetting(
+            PropertyInfo setting, 
+            object value)
         {
             using (StreamWriter sw = new StreamWriter(Path, true))
             {
-                sw.WriteLine(setting.Name);
+                sw.WriteLine($"{setting.Name}, {setting.PropertyType.Name}, {value};");
             }
         }
 
-        public string LoadSetting(ConfigurationItemAttribute setting)
+        public string LoadSetting()
         {
             using (StreamReader sr = new StreamReader(Path))
             {
