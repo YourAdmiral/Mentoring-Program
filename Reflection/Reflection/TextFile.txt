@@ -1,4 +1,12 @@
-Value1,5
-Value2,540
-Value3,thisistext
-Value4,01:02:03
+Value1,1
+Value3,1
+Value1,1
+Value3,1
+Value1,1
+Value3,1
+Value1,1
+Value3,1
+Value1,1
+Value3,1
+Value1,1
+Value3,1

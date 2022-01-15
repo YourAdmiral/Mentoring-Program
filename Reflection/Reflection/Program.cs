@@ -26,14 +26,12 @@ namespace Reflection
                 configurationProvider);
 
             CustomFile file = new CustomFile(
-                0,
-                0,
-                "0",
-                new TimeSpan(0, 0, 0));
+                1,
+                1,
+                "1",
+                new TimeSpan(11, 11, 11));
 
-            //Console.WriteLine(file.Value4);
-
-            //componentBase.SaveSettings(file);
+            componentBase.SaveSettings(file);
 
             componentBase.LoadSettings(file);
 

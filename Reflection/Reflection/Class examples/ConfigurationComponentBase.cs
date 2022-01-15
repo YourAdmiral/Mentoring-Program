@@ -46,40 +46,9 @@ namespace Reflection.Class_examples
                         }
                         else if (attribute.Type == ProviderType.Configuration)
                         {
-                            Type propType = prop.PropertyType;
-
-                            string stringValue;
-
-                            int intValue;
-
-                            float floatValue;
-
-                            TimeSpan timeSpanValue;
-
-                            if (propType == typeof(int))
-                            {
-                                intValue = Convert.ToInt32(ConfigurationManager.AppSettings[$"{prop.Name}"]);
-
-                                prop.SetValue(customFile, intValue);
-                            }
-                            else if (propType == typeof(float))
-                            {
-                                floatValue = Convert.ToSingle(ConfigurationManager.AppSettings[$"{prop.Name}"]);
-
-                                prop.SetValue(customFile, floatValue);
-                            }
-                            else if (propType == typeof(TimeSpan))
-                            {
-                                timeSpanValue = TimeSpan.Parse(ConfigurationManager.AppSettings[$"{prop.Name}"]);
-
-                                prop.SetValue(customFile, timeSpanValue);
-                            }
-                            else
-                            {
-                                stringValue = ConfigurationManager.AppSettings[$"{prop.Name}"];
-
-                                prop.SetValue(customFile, stringValue);
-                            }
+                            prop.SetValue(
+                                customFile,
+                                _configurationProvider.LoadSetting(prop));
                         }
                     }
                 }
@@ -108,7 +77,9 @@ namespace Reflection.Class_examples
                         }
                         else if (attribute.Type == ProviderType.Configuration)
                         {
-                            //_configurationProvider.SaveSetting(prop);
+                            _configurationProvider.SaveSetting(
+                                prop,
+                                prop.GetValue(customFile));
                         }
                     }
                 }

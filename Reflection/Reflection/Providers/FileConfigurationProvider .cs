@@ -23,7 +23,7 @@ namespace Reflection.Providers
             PropertyInfo setting, 
             object value)
         {
-            using (StreamWriter sw = new StreamWriter(Path, false))
+            using (StreamWriter sw = new StreamWriter(Path, true))
             {
                 sw.WriteLine($"{setting.Name},{value}");
             }
@@ -71,10 +71,9 @@ namespace Reflection.Providers
 
                             return timeSpanValue;
                         }
-                        else
+                        else if (propType == typeof(string))
                         {
                             return settingValues[1];
-
                         }
                     }
                 }
