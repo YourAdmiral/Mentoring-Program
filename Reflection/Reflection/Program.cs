@@ -31,7 +31,15 @@ namespace Reflection
                 "Text",
                 new TimeSpan(4, 20, 40));
 
+            Console.WriteLine(file.Value4);
+
             componentBase.SaveSettings(file);
+
+            componentBase.LoadSettings(file);
+
+            Console.WriteLine(file.Value2);
+
+            Console.WriteLine(file.Value4);
         }
     }
 }
