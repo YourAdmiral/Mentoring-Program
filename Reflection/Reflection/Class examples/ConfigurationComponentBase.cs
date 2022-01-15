@@ -40,7 +40,9 @@ namespace Reflection.Class_examples
                     {
                         if (attribute.Type == ProviderType.File)
                         {
-
+                            prop.SetValue(
+                                customFile, 
+                                _fileProvider.LoadSetting(prop));
                         }
                         else if (attribute.Type == ProviderType.Configuration)
                         {

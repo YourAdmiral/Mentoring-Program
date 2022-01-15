@@ -1,22 +1,4 @@
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
-Value1, Int32, 1;
-Value3, String, Text;
+Value1,5
+Value2,540
+Value3,thisistext
+Value4,01:02:03
