@@ -1,4 +1,4 @@
-﻿using Reflection.Providers;
+﻿using Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Reflection.Attributes
         public ProviderType Type { get; set; }
 
         public ConfigurationItemAttribute(
-            string name, 
+            string name,
             ProviderType type)
         {
             this.Name = name;

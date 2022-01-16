@@ -6,9 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reflection.Providers
+namespace Providers
 {
-    internal class ConfigurationManagerConfigurationProvider : Provider
+    public class ConfigurationManagerConfigurationProvider : Provider
     {
         private Configuration _config;
 

@@ -1,5 +1,4 @@
-﻿using Reflection.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -8,9 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reflection.Providers
+namespace Providers
 {
-    internal class FileConfigurationProvider : Provider
+    public class FileConfigurationProvider : Provider
     {
         public string Path { get; set; }   
 
@@ -72,13 +71,18 @@ namespace Reflection.Providers
 
         private List<List<string>> LoadFileSettings()
         {
+            FileInfo f = new FileInfo(Path);
+
             List<List<string>> settingsList = new List<List<string>>();
 
-            using (StreamReader sr = new StreamReader(Path))
+            if (f != null)
             {
-                while (!sr.EndOfStream)
+                using (StreamReader sr = new StreamReader(Path))
                 {
-                    settingsList.Add(sr.ReadLine().Split(',').ToList());
+                    while (!sr.EndOfStream)
+                    {
+                        settingsList.Add(sr.ReadLine().Split(',').ToList());
+                    }
                 }
             }
 

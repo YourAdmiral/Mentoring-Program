@@ -1,8 +1,8 @@
 ﻿using Reflection.Class_examples;
-using Reflection.Providers;
 using System;
 using System.Configuration;
 using System.IO;
+using System.Reflection;
 
 namespace Reflection
 {
@@ -10,13 +10,23 @@ namespace Reflection
     {
         static void Main(string[] args)
         {
-            FileConfigurationProvider fileProvider = new FileConfigurationProvider(@"..\..\..\TextFile.txt");
+            //var DLL = Assembly.LoadFile(@"C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Reflection\Reflection\Providers.dll");
 
-            ConfigurationManagerConfigurationProvider configurationProvider = new ConfigurationManagerConfigurationProvider(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
+            FileInfo f = new FileInfo(@"C:\Users\Kiryl_Kartashou\Desktop\Git\Mentoring-Program\Reflection\Reflection\Providers.dll");
+
+            Assembly assembly = Assembly.LoadFrom(f.FullName);
+
+            Type configurationProviderType = assembly.GetType("Providers.ConfigurationManagerConfigurationProvider");
+
+            Type fileProviderType = assembly.GetType("Providers.FileConfigurationProvider");
+
+            dynamic configInstance = Activator.CreateInstance(configurationProviderType, ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
+
+            dynamic fileInstance = Activator.CreateInstance(fileProviderType, @"..\..\..\TextFile.txt");
 
             ConfigurationComponentBase componentBase = new ConfigurationComponentBase(
-                fileProvider, 
-                configurationProvider);
+                fileInstance,
+                configInstance);
 
             CustomFile file = new CustomFile(
                 1,

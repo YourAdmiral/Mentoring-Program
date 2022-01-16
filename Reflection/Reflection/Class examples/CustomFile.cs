@@ -1,5 +1,5 @@
-﻿using Reflection.Attributes;
-using Reflection.Providers;
+﻿using Providers;
+using Reflection.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Reflection.Class_examples
 {
     internal class CustomFile
     {
-        [ConfigurationItemAttribute("Test",ProviderType.File)]
+        [ConfigurationItemAttribute("Test", ProviderType.File)]
         public int Value1 { get; set; }
 
         [ConfigurationItemAttribute("Test", ProviderType.Configuration)]

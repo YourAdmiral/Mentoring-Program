@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reflection.Providers
+namespace Providers
 {
-    internal abstract class Provider
+    public abstract class Provider
     {
         public object LoadSettingValues(Type propType, string propValue)
         {

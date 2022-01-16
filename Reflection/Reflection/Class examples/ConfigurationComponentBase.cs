@@ -1,5 +1,5 @@
-﻿using Reflection.Attributes;
-using Reflection.Providers;
+﻿using Providers;
+using Reflection.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -41,7 +41,7 @@ namespace Reflection.Class_examples
                         if (attribute.Type == ProviderType.File)
                         {
                             prop.SetValue(
-                                customFile, 
+                                customFile,
                                 _fileProvider.LoadSetting(prop));
                         }
                         else if (attribute.Type == ProviderType.Configuration)
