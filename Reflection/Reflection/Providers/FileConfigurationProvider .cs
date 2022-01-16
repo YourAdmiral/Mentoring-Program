@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Reflection.Providers
 {
-    internal class FileConfigurationProvider
+    internal class FileConfigurationProvider : Provider
     {
         public string Path { get; set; }   
 
@@ -19,7 +19,7 @@ namespace Reflection.Providers
             Path = path;
         }
 
-        public void SaveSetting(
+        public override void SaveSetting(
             PropertyInfo setting, 
             object value)
         {
@@ -53,7 +53,7 @@ namespace Reflection.Providers
             }
         }
 
-        public object LoadSetting(PropertyInfo setting)
+        public override object LoadSetting(PropertyInfo setting)
         {
             Type propType = setting.PropertyType;
 
@@ -63,42 +63,8 @@ namespace Reflection.Providers
             {
                 if (settingValues[0] == setting.Name)
                 {
-                    return GetSettingValue(propType, settingValues[1]);
+                    return LoadSettingValues(propType, settingValues[1]);
                 }
-            }
-
-            return null;
-        }
-
-        private object GetSettingValue(Type propType, string propValue)
-        {
-            int intValue;
-
-            float floatValue;
-
-            TimeSpan timeSpanValue;
-
-            if (propType == typeof(int))
-            {
-                intValue = Convert.ToInt32(propValue);
-
-                return intValue;
-            }
-            else if (propType == typeof(float))
-            {
-                floatValue = Convert.ToSingle(propValue);
-
-                return floatValue;
-            }
-            else if (propType == typeof(TimeSpan))
-            {
-                timeSpanValue = TimeSpan.Parse(propValue);
-
-                return timeSpanValue;
-            }
-            else if (propType == typeof(string))
-            {
-                return propValue;
             }
 
             return null;

@@ -1,6 +1,7 @@
 ﻿using Reflection.Class_examples;
 using Reflection.Providers;
 using System;
+using System.Configuration;
 using System.IO;
 
 namespace Reflection
@@ -11,15 +12,7 @@ namespace Reflection
         {
             FileConfigurationProvider fileProvider = new FileConfigurationProvider(@"..\..\..\TextFile.txt");
 
-            ConfigurationManagerConfigurationProvider configurationProvider = new ConfigurationManagerConfigurationProvider();
-
-            //fileProvider.SaveSetting("str, string");
-
-            //fileProvider.SaveSetting("value, int");
-
-            //string str = fileProvider.LoadSetting();
-
-            //Console.WriteLine(str);
+            ConfigurationManagerConfigurationProvider configurationProvider = new ConfigurationManagerConfigurationProvider(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
 
             ConfigurationComponentBase componentBase = new ConfigurationComponentBase(
                 fileProvider, 

@@ -8,72 +8,47 @@ using System.Threading.Tasks;
 
 namespace Reflection.Providers
 {
-    internal class ConfigurationManagerConfigurationProvider
+    internal class ConfigurationManagerConfigurationProvider : Provider
     {
-        public void SaveSetting(
+        private Configuration _config;
+
+        public ConfigurationManagerConfigurationProvider(Configuration config)
+        {
+            _config = config;
+        }
+
+        public override void SaveSetting(
             PropertyInfo setting,
             object value)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
             if (!IsAlreadySavedSetting(setting))
             {
-                config.AppSettings.Settings.Add(
+                _config.AppSettings.Settings.Add(
                     setting.Name, 
                     value.ToString());
             }
             else
             {
-                config.AppSettings.Settings[$"{setting.Name}"].Value = value.ToString();
+                _config.AppSettings.Settings[$"{setting.Name}"].Value = value.ToString();
             }
 
-            config.Save(ConfigurationSaveMode.Minimal);
+            _config.Save(ConfigurationSaveMode.Minimal);
+
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        public object LoadSetting(PropertyInfo setting)
+        public override object LoadSetting(PropertyInfo setting)
         {
             Type propType = setting.PropertyType;
 
-            string stringValue;
+            string settingValue = _config.AppSettings.Settings[$"{setting.Name}"].Value.ToString();
 
-            int intValue;
-
-            float floatValue;
-
-            TimeSpan timeSpanValue;
-
-            if (propType == typeof(int))
-            {
-                intValue = Convert.ToInt32(ConfigurationManager.AppSettings[$"{setting.Name}"]);
-
-                return intValue;
-            }
-            else if (propType == typeof(float))
-            {
-                floatValue = Convert.ToSingle(ConfigurationManager.AppSettings[$"{setting.Name}"]);
-
-                return floatValue;
-            }
-            else if (propType == typeof(TimeSpan))
-            {
-                timeSpanValue = TimeSpan.Parse(ConfigurationManager.AppSettings[$"{setting.Name}"]);
-
-                return timeSpanValue;
-            }
-            else if (propType == typeof(string))
-            {
-                stringValue = ConfigurationManager.AppSettings[$"{setting.Name}"];
-
-                return stringValue;
-            }
-
-            return null;
+            return LoadSettingValues(propType, settingValue);
         }
 
         private bool IsAlreadySavedSetting(PropertyInfo setting)
         {
-            if (ConfigurationManager.AppSettings[$"{setting.Name}"] != null)
+            if (_config.AppSettings.Settings[$"{setting.Name}"] != null)
             {
                 return true;
             }
