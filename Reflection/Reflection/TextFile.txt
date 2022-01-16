@@ -1,12 +1,2 @@
 Value1,1
 Value3,1
-Value1,1
-Value3,1
-Value1,1
-Value3,1
-Value1,1
-Value3,1
-Value1,1
-Value3,1
-Value1,1
-Value3,1
