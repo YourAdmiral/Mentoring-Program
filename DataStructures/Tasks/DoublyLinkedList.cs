@@ -1,47 +1,88 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Tasks.DoNotChange;
 
 namespace Tasks
 {
     public class DoublyLinkedList<T> : IDoublyLinkedList<T>
     {
-        public int Length => throw new NotImplementedException();
+        private List<T> _list;
+
+        public int Length { get; private set; }
+
+        public DoublyLinkedList()
+        {
+            _list = new List<T>();
+
+            Length = 0;
+        }
 
         public void Add(T e)
         {
-            throw new NotImplementedException();
+            _list.Add(e);
+
+            Length++;
         }
 
         public void AddAt(int index, T e)
         {
-            throw new NotImplementedException();
+            _list.Insert(index, e);
+
+            Length++;
         }
 
         public T ElementAt(int index)
         {
-            throw new NotImplementedException();
+            if (Length != 0 
+                && index >= 0
+                && index < Length)
+            {
+                return _list[index];
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _list.Cast<T>().GetEnumerator();
         }
 
         public void Remove(T item)
         {
-            throw new NotImplementedException();
+            if (_list.Contains(item))
+            {
+                _list.Remove(item);
+
+                Length--;
+            }
         }
 
         public T RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (index >= 0 && index < Length)
+            {
+                T item = _list[index];
+
+                _list.RemoveAt(index);
+
+                Length--;
+
+                return item;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return (IEnumerator)GetEnumerator();
         }
     }
 }
