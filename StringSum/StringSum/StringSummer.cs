@@ -2,7 +2,11 @@
 
 namespace StringSum
 {
-    public class StringSummer
+    public static class StringSummer
     {
+        public static string Sum(string num1, string num2)
+        {
+            return null;
+        }
     }
 }
