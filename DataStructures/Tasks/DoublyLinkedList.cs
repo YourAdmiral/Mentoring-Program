@@ -2,44 +2,139 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using Tasks.DoNotChange;
 
 namespace Tasks
 {
     public class DoublyLinkedList<T> : IDoublyLinkedList<T>
     {
-        private List<T> _list;
+        private Node<T> _head;
+
+        private Node<T> _tail;
+
+        public Node<T> First
+        {
+            get
+            {
+                return _head;
+            }
+            set
+            {
+                _head = value;
+            }
+        }
+
+        public Node<T> Last
+        {
+            get
+            {
+                return _tail;
+            }
+            set
+            {
+                _tail = value;
+            }
+        }
 
         public int Length { get; private set; }
 
         public DoublyLinkedList()
         {
-            _list = new List<T>();
-
             Length = 0;
         }
 
         public void Add(T e)
         {
-            _list.Add(e);
+            var newNode = new Node<T>(
+                Length,
+                e);
+
+            if (_tail == null)
+            {
+                _head = newNode;
+            }
+            else
+            {
+                newNode.Previous = _tail;
+
+                _tail.Next = newNode;
+            }
+
+            _tail = newNode;
 
             Length++;
         }
 
-        public void AddAt(int index, T e)
+        public void AddAt(
+            int index,
+            T e)
         {
-            _list.Insert(index, e);
+            var current = _head;
 
-            Length++;
+            var newNode = new Node<T>(index, e);
+
+            if (index == Length)
+            {
+                _tail = newNode;
+
+                current.Next = newNode;
+
+                Length++;
+            }
+            else
+            {
+                while (current != null)
+                {
+                    if (current.Index == index)
+                    {
+                        if (current.Next == null)
+                        {
+                            _tail = current;
+                        }
+                        else
+                        {
+                            current.Next.Previous = newNode;
+                        }
+
+                        if (current.Previous == null)
+                        {
+                            _head = newNode;
+                        }
+                        else
+                        {
+                            current.Previous.Next = newNode;
+                        }
+
+                        current = null;
+
+                        Length++;
+
+                        continue;
+                    }
+
+                    current = current.Next;
+                }
+            }
         }
 
         public T ElementAt(int index)
         {
-            if (Length != 0 
-                && index >= 0
-                && index < Length)
+            if (Length != 0)
             {
-                return _list[index];
+                var current = _head;
+
+                while (current != null)
+                {
+                    if (current.Index == index)
+                    {
+                        return current.Data;
+                    }
+
+                    current = current.Next;
+                }
+
+                throw new IndexOutOfRangeException();
             }
             else
             {
@@ -47,42 +142,94 @@ namespace Tasks
             }
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return _list.Cast<T>().GetEnumerator();
-        }
-
         public void Remove(T item)
         {
-            if (_list.Contains(item))
-            {
-                _list.Remove(item);
+            var current = _head;
 
-                Length--;
+            while (current != null)
+            {
+                if (item.ToString() == current.Data.ToString())
+                {
+                    if (current.Next == null)
+                    {
+                        _tail = current.Previous;
+                    }
+                    else
+                    {
+                        current.Next.Previous = current.Previous;
+                    }
+
+                    if (current.Previous == null)
+                    {
+                        _head = current.Next;
+                    }
+                    else
+                    {
+                        current.Previous.Next = current.Next;
+                    }
+
+                    Length--;
+
+                    current = null;
+
+                    continue;
+                }
+
+                current = current.Next;
             }
         }
 
         public T RemoveAt(int index)
         {
-            if (index >= 0 && index < Length)
+            var current = _head;
+
+            while (current != null)
             {
-                T item = _list[index];
+                if (current.Index == index)
+                {
+                    if (current.Next == null)
+                    {
+                        _tail = current.Previous;
+                    }
+                    else
+                    {
+                        current.Next.Previous = current.Previous;
+                    }
 
-                _list.RemoveAt(index);
+                    if (current.Previous == null)
+                    {
+                        _head = current.Next;
+                    }
+                    else
+                    {
+                        current.Previous.Next = current.Next;
+                    }
 
-                Length--;
+                    Length--;
 
-                return item;
+                    return current.Data;
+                }
+
+                current = current.Next;
             }
-            else
+
+            throw new IndexOutOfRangeException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var current = _head;
+
+            while (current != null)
             {
-                throw new IndexOutOfRangeException();
+                yield return current.Data;
+                current = current.Next;
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator)GetEnumerator();
+            return GetEnumerator();
         }
     }
 }
