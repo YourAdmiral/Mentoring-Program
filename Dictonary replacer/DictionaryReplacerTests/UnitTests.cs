@@ -15,7 +15,7 @@ namespace DictionaryReplacerTests
         {
             string result;
 
-            string str = null;
+            string str = "";
 
             var dictionary = new Dictionary<string, string>();
 
