@@ -58,6 +58,7 @@
     <Folder Include="Properties" />
     <Folder Include="PostDeployScripts" />
     <Folder Include="Views" />
+    <Folder Include="Stored procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Person.sql" />
@@ -65,6 +66,7 @@
     <Build Include="Employee.sql" />
     <Build Include="Company.sql" />
     <Build Include="Views\EmployeeInfo.sql" />
+    <Build Include="Stored procedures\ProcedureInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployScripts\PostDeploymentScript.sql" />
