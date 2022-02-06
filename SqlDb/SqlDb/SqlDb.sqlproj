@@ -73,4 +73,7 @@
   <ItemGroup>
     <RefactorLog Include="SqlDb.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SqlDb.publish.xml" />
+  </ItemGroup>
 </Project>
