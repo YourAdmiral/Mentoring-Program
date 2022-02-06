@@ -57,12 +57,14 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="PostDeployScripts" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Person.sql" />
     <Build Include="Address.sql" />
     <Build Include="Employee.sql" />
     <Build Include="Company.sql" />
+    <Build Include="Views\EmployeeInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployScripts\PostDeploymentScript.sql" />
