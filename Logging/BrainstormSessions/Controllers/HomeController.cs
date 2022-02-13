@@ -7,11 +7,15 @@ using BrainstormSessions.Core.Model;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
+//[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 namespace BrainstormSessions.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public HomeController(IBrainstormSessionRepository sessionRepository)
         {
@@ -20,17 +24,28 @@ namespace BrainstormSessions.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var sessionList = await _sessionRepository.ListAsync();
-
-            var model = sessionList.Select(session => new StormSessionViewModel()
+            try
             {
-                Id = session.Id,
-                DateCreated = session.DateCreated,
-                Name = session.Name,
-                IdeaCount = session.Ideas.Count
-            });
+                var sessionList = await _sessionRepository.ListAsync();
 
-            return View(model);
+                var model = sessionList.Select(session => new StormSessionViewModel()
+                {
+                    Id = session.Id,
+                    DateCreated = session.DateCreated,
+                    Name = session.Name,
+                    IdeaCount = session.Ideas.Count
+                });
+
+                log.Info("Expected Info messages in the logs");
+
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                log.Error("Expected Error messages in the logs");
+
+                return null;
+            }
         }
 
         public class NewSessionModel
@@ -42,20 +57,31 @@ namespace BrainstormSessions.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(NewSessionModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
-            }
-            else
-            {
-                await _sessionRepository.AddAsync(new BrainstormSession()
+                if (!ModelState.IsValid)
                 {
-                    DateCreated = DateTimeOffset.Now,
-                    Name = model.SessionName
-                });
-            }
+                    log.Warn("Expected Warn messages in the logs");
 
-            return RedirectToAction(actionName: nameof(Index));
+                    return BadRequest(ModelState);
+                }
+                else
+                {
+                    await _sessionRepository.AddAsync(new BrainstormSession()
+                    {
+                        DateCreated = DateTimeOffset.Now,
+                        Name = model.SessionName
+                    });
+                }
+
+                return RedirectToAction(actionName: nameof(Index));
+            }
+            catch (Exception e)
+            {
+                log.Error("Expected Error messages in the logs");
+
+                return null;
+            }
         }
     }
 }

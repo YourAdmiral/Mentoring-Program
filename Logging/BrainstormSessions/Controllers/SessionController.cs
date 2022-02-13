@@ -3,11 +3,15 @@ using BrainstormSessions.Core.Interfaces;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 namespace BrainstormSessions.Controllers
 {
     public class SessionController : Controller
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public SessionController(IBrainstormSessionRepository sessionRepository)
         {
@@ -34,6 +38,10 @@ namespace BrainstormSessions.Controllers
                 Name = session.Name,
                 Id = session.Id
             };
+
+            log.Debug("Expected 2 Debug messages in the logs");
+
+            log.Debug("Expected 2 Debug messages in the logs");
 
             return View(viewModel);
         }

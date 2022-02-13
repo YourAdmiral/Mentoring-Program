@@ -13,6 +13,8 @@ namespace BrainstormSessions.Api
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public IdeasController(IBrainstormSessionRepository sessionRepository)
         {
             _sessionRepository = sessionRepository;
@@ -101,6 +103,8 @@ namespace BrainstormSessions.Api
         {
             if (!ModelState.IsValid)
             {
+                log.Error("Expected Error messages in the logs");
+
                 return BadRequest(ModelState);
             }
 
@@ -108,6 +112,8 @@ namespace BrainstormSessions.Api
 
             if (session == null)
             {
+                log.Error("Expected Error messages in the logs");
+
                 return NotFound(model.SessionId);
             }
 
