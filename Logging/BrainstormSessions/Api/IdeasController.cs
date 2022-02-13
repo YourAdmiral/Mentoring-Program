@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BrainstormSessions.ClientModels;
 using BrainstormSessions.Core.Interfaces;
 using BrainstormSessions.Core.Model;
+using BrainstormSessions.Logger;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrainstormSessions.Api
@@ -13,7 +14,7 @@ namespace BrainstormSessions.Api
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
 
         public IdeasController(IBrainstormSessionRepository sessionRepository)
         {

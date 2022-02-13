@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using BrainstormSessions.Core.Interfaces;
+using BrainstormSessions.Logger;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+//[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace BrainstormSessions.Controllers
 {
@@ -11,7 +12,7 @@ namespace BrainstormSessions.Controllers
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
 
         public SessionController(IBrainstormSessionRepository sessionRepository)
         {
