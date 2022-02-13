@@ -1,4 +1,7 @@
 using System;
+using System.Net;
+using System.Net.Mail;
+using BrainstormSessions.Mail;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -20,7 +23,12 @@ namespace BrainstormSessions
 
             try
             {
-                Log.Information("Application Starting Up");
+                const string message = "Application Starting Up";
+
+                MailSender.Send(message);
+
+                Log.Information(message);
+
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)

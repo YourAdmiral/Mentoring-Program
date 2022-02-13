@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BrainstormSessions.Core.Interfaces;
 using BrainstormSessions.Core.Model;
 using BrainstormSessions.Logger;
+using BrainstormSessions.Mail;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,8 @@ namespace BrainstormSessions.Controllers
         {
             try
             {
+                const string message = "Index method was finished";
+
                 var sessionList = await _sessionRepository.ListAsync();
 
                 var model = sessionList.Select(session => new StormSessionViewModel()
@@ -35,12 +38,16 @@ namespace BrainstormSessions.Controllers
                     IdeaCount = session.Ideas.Count
                 });
 
-                log.Info("Expected Info messages in the logs");
+                MailSender.Send(message);
+
+                log.Info(message);
 
                 return View(model);
             }
             catch (Exception ex)
             {
+                MailSender.Send(ex.Message);
+
                 log.Error($"[{nameof(HomeController)} | {nameof(this.Index)}] {ex.Message}");
 
                 return null;
@@ -58,9 +65,13 @@ namespace BrainstormSessions.Controllers
         {
             try
             {
+                const string message = "Model is invalid";
+
                 if (!ModelState.IsValid)
                 {
-                    log.Warn("Expected Warn messages in the logs");
+                    MailSender.Send(message);
+
+                    log.Warn(message);
 
                     return BadRequest(ModelState);
                 }
@@ -77,6 +88,8 @@ namespace BrainstormSessions.Controllers
             }
             catch (Exception ex)
             {
+                MailSender.Send(ex.Message);
+
                 log.Error($"[{nameof(HomeController)} | {nameof(this.Index)}] {ex.Message}");
 
                 return null;

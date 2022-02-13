@@ -6,6 +6,7 @@ using BrainstormSessions.ClientModels;
 using BrainstormSessions.Core.Interfaces;
 using BrainstormSessions.Core.Model;
 using BrainstormSessions.Logger;
+using BrainstormSessions.Mail;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrainstormSessions.Api
@@ -104,9 +105,15 @@ namespace BrainstormSessions.Api
         {
             try
             {
+                const string messageNotValid = "Model is invalid";
+
+                const string messageSessionNotFound = "Session not found";
+
                 if (!ModelState.IsValid)
                 {
-                    throw new Exception("Model is invalid");
+                    MailSender.Send(messageNotValid);
+
+                    log.Warn(messageNotValid);
 
                     return BadRequest(ModelState);
                 }
@@ -115,7 +122,9 @@ namespace BrainstormSessions.Api
 
                 if (session == null)
                 {
-                    throw new Exception("Session is null");
+                    MailSender.Send(messageSessionNotFound);
+
+                    log.Warn(messageSessionNotFound);
 
                     return NotFound(model.SessionId);
                 }
@@ -134,6 +143,8 @@ namespace BrainstormSessions.Api
             }
             catch (Exception ex)
             {
+                MailSender.Send(ex.Message);
+
                 log.Error($"[{nameof(IdeasController)} | {nameof(this.CreateActionResult)}] {ex.Message}");
 
                 return null;
