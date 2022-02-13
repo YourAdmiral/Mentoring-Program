@@ -102,33 +102,42 @@ namespace BrainstormSessions.Api
         [ProducesResponseType(404)]
         public async Task<ActionResult<BrainstormSession>> CreateActionResult([FromBody]NewIdeaModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                log.Error("Expected Error messages in the logs");
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Model is invalid");
 
-                return BadRequest(ModelState);
+                    return BadRequest(ModelState);
+                }
+
+                var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+
+                if (session == null)
+                {
+                    throw new Exception("Session is null");
+
+                    return NotFound(model.SessionId);
+                }
+
+                var idea = new Idea()
+                {
+                    DateCreated = DateTimeOffset.Now,
+                    Description = model.Description,
+                    Name = model.Name
+                };
+                session.AddIdea(idea);
+
+                await _sessionRepository.UpdateAsync(session);
+
+                return CreatedAtAction(nameof(CreateActionResult), new { id = session.Id }, session);
             }
-
-            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
-
-            if (session == null)
+            catch (Exception ex)
             {
-                log.Error("Expected Error messages in the logs");
+                log.Error($"[{nameof(IdeasController)} | {nameof(this.CreateActionResult)}] {ex.Message}");
 
-                return NotFound(model.SessionId);
+                return null;
             }
-
-            var idea = new Idea()
-            {
-                DateCreated = DateTimeOffset.Now,
-                Description = model.Description,
-                Name = model.Name
-            };
-            session.AddIdea(idea);
-
-            await _sessionRepository.UpdateAsync(session);
-
-            return CreatedAtAction(nameof(CreateActionResult), new { id = session.Id }, session);
         }
         #endregion
     }

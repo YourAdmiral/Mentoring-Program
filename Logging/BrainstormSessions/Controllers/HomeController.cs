@@ -8,8 +8,6 @@ using BrainstormSessions.Logger;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
-
 namespace BrainstormSessions.Controllers
 {
     public class HomeController : Controller
@@ -41,9 +39,9 @@ namespace BrainstormSessions.Controllers
 
                 return View(model);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error("Expected Error messages in the logs");
+                log.Error($"[{nameof(HomeController)} | {nameof(this.Index)}] {ex.Message}");
 
                 return null;
             }
@@ -77,9 +75,9 @@ namespace BrainstormSessions.Controllers
 
                 return RedirectToAction(actionName: nameof(Index));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error("Expected Error messages in the logs");
+                log.Error($"[{nameof(HomeController)} | {nameof(this.Index)}] {ex.Message}");
 
                 return null;
             }

@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BrainstormSessions.Core.Interfaces;
 using BrainstormSessions.Logger;
 using BrainstormSessions.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
-//[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace BrainstormSessions.Controllers
 {
@@ -21,30 +20,38 @@ namespace BrainstormSessions.Controllers
 
         public async Task<IActionResult> Index(int? id)
         {
-            if (!id.HasValue)
+            try
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                log.Debug("Session started");
+
+                if (!id.HasValue)
+                {
+                    return RedirectToAction(actionName: nameof(Index),
+                        controllerName: "Home");
+                }
+
+                var session = await _sessionRepository.GetByIdAsync(id.Value);
+                if (session == null)
+                {
+                    return Content("Session not found.");
+                }
+
+                var viewModel = new StormSessionViewModel()
+                {
+                    DateCreated = session.DateCreated,
+                    Name = session.Name,
+                    Id = session.Id
+                };
+
+                log.Debug("Session successfully ended");
+
+                return View(viewModel);
             }
-
-            var session = await _sessionRepository.GetByIdAsync(id.Value);
-            if (session == null)
+            catch (Exception ex)
             {
-                return Content("Session not found.");
+                log.Error($"[{nameof(HomeController)} | {nameof(this.Index)}] {ex.Message}");
+                return null;
             }
-
-            var viewModel = new StormSessionViewModel()
-            {
-                DateCreated = session.DateCreated,
-                Name = session.Name,
-                Id = session.Id
-            };
-
-            log.Debug("Expected 2 Debug messages in the logs");
-
-            log.Debug("Expected 2 Debug messages in the logs");
-
-            return View(viewModel);
         }
     }
 }
