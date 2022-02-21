@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonSerialization", "JsonSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISerializableSerialization", "ISerializableSerialization\ISerializableSerialization.csproj", "{6E612A0A-D4CC-4FC6-B819-D817FC4F7433}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepCloningSerialization", "DeepCloningSerialization\DeepCloningSerialization.csproj", "{AD0B15DB-FAC8-445B-91EE-4548CC92C782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6E612A0A-D4CC-4FC6-B819-D817FC4F7433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E612A0A-D4CC-4FC6-B819-D817FC4F7433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E612A0A-D4CC-4FC6-B819-D817FC4F7433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0B15DB-FAC8-445B-91EE-4548CC92C782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0B15DB-FAC8-445B-91EE-4548CC92C782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0B15DB-FAC8-445B-91EE-4548CC92C782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0B15DB-FAC8-445B-91EE-4548CC92C782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
