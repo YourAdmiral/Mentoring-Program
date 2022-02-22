@@ -19,14 +19,12 @@ namespace ISerializableSerialization
             myItem.FirstProperty = firtstValue;
             myItem.SecondProperty = secondValue;
 
-            var fs = new FileStream(fileName, 
-                FileMode.Create);
+            var fs = new FileStream(fileName, FileMode.Create);
 
             formatter.Serialize(fs, myItem);
             fs.Close();
 
-            fs = new FileStream(fileName, 
-                FileMode.Open);
+            fs = new FileStream(fileName, FileMode.Open);
 
             var deserializedItem = (MyItemType) formatter.Deserialize(fs);
         }

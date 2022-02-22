@@ -32,16 +32,16 @@ namespace ISerializableSerialization
 
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("props1", firstProperty_value, typeof(string));
-            info.AddValue("props2", secondProperty_value, typeof(string));
-        }
-
         public MyItemType(SerializationInfo info, StreamingContext context)
         {
             firstProperty_value = (string)info.GetValue("props1", typeof(string));
             secondProperty_value = (string)info.GetValue("props2", typeof(string));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("props1", firstProperty_value, typeof(string));
+            info.AddValue("props2", secondProperty_value, typeof(string));
         }
     }
 }
