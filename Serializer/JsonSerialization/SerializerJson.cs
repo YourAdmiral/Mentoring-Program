@@ -20,11 +20,11 @@ namespace JsonSerialization
 
         public void Serialize(Department department)
         {
-            JsonSerializer json = new JsonSerializer();
+            var json = new JsonSerializer();
 
-            using (StreamWriter sw = new StreamWriter(_jsonFile))
+            using (var sw = new StreamWriter(_jsonFile))
             {
-                using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+                using (var jsonWriter = new JsonTextWriter(sw))
                 {
                     json.Serialize(jsonWriter, department);
                 }
@@ -34,11 +34,11 @@ namespace JsonSerialization
         public Department Deserialize()
         {
             JObject jObj = null;
-            JsonSerializer json = new JsonSerializer();
+            var json = new JsonSerializer();
 
-            using (StreamReader sr = new StreamReader(_jsonFile))
+            using (var sr = new StreamReader(_jsonFile))
             {
-                using (JsonReader jsonReader = new JsonTextReader(sr))
+                using (var jsonReader = new JsonTextReader(sr))
                 {
                     jObj = json.Deserialize(jsonReader) as JObject;
                 }

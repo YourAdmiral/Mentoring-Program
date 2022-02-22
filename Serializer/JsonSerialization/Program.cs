@@ -6,27 +6,27 @@ namespace JsonSerialization
     {
         static void Main(string[] args)
         {
-            string employeeName = "Dave";
+            const string employeeName = "Dave";
 
-            string departmentName = "Development department";
+            const string departmentName = "Development department";
 
-            string jsonFile = "Department.json";
+            const string jsonFile = "Department.json";
 
-            Employee employee = new Employee();
+            var employee = new Employee();
+
+            var department = new Department();
 
             employee.Name = employeeName;
-
-            Department department = new Department();
 
             department.Name = departmentName;
 
             department.Employees.Add(employee);
 
-            SerializerJson serializerJson = new SerializerJson(jsonFile);
+            var serializerJson = new SerializerJson(jsonFile);
 
             serializerJson.Serialize(department);
 
-            Department deserializedDepartment = serializerJson.Deserialize();
+            var deserializedDepartment = serializerJson.Deserialize();
         }
     }
 }

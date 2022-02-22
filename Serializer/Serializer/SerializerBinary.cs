@@ -19,9 +19,9 @@ namespace BinarySerialization
 
         public void Serialize(Department department)
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
 
-            using (FileStream fs = new FileStream(_binaryFile, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(_binaryFile, FileMode.OpenOrCreate))
             {
                 bf.Serialize(fs, department);
             }
@@ -29,9 +29,9 @@ namespace BinarySerialization
 
         public Department Deserialize()
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
 
-            using (FileStream fs = new FileStream(_binaryFile, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(_binaryFile, FileMode.OpenOrCreate))
             {
                 return (Department) bf.Deserialize(fs);
             }

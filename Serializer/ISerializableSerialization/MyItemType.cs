@@ -11,11 +11,6 @@ namespace ISerializableSerialization
     [Serializable]
     public class MyItemType : ISerializable
     {
-        public MyItemType()
-        {
-
-        }
-        
         private string firstProperty_value;
 
         private string secondProperty_value;
@@ -30,6 +25,11 @@ namespace ISerializableSerialization
         {
             get { return secondProperty_value; }
             set { secondProperty_value = value; }
+        }
+
+        public MyItemType()
+        {
+
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

@@ -8,27 +8,27 @@ namespace XMLSerialization
     {
         static void Main(string[] args)
         {
-            string employeeName = "Dave";
+            const string employeeName = "Dave";
 
-            string departmentName = "Development department";
+            const string departmentName = "Development department";
 
-            string xmlFile = "Department.xml";
+            const string xmlFile = "Department.xml";
 
-            Employee employee = new Employee();
+            var employee = new Employee();
+
+            var department = new Department();
 
             employee.Name = employeeName;
 
-            Department department = new Department();
-            
             department.Name = departmentName;
 
             department.Employees.Add(employee);
 
-            SerializerXML serializerXML = new SerializerXML(xmlFile);
+            var serializerXML = new SerializerXML(xmlFile);
 
             serializerXML.Serialize(department);
 
-            Department deserializedDepartment = serializerXML.Deserialize();
+            var deserializedDepartment = serializerXML.Deserialize();
         }
     }
 }

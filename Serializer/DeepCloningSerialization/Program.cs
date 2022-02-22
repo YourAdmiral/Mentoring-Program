@@ -9,23 +9,21 @@ namespace DeepCloningSerialization
     {
         static void Main(string[] args)
         {
-            string employeeName = "Nate";
+            const string employeeName = "Nate";
 
-            string departmentName = "Development department";
+            const string departmentName = "Development department";
 
-            string jsonFile = "Department.myData";
+            var employee = new Employee();
 
-            Employee employee = new Employee();
+            var department = new Department();
 
             employee.Name = employeeName;
-
-            Department department = new Department();
 
             department.Name = departmentName;
 
             department.Employees.Add(employee);
 
-            Department clone = department.DeepClone();
+            var clone = department.DeepClone();
         }
     }
 }

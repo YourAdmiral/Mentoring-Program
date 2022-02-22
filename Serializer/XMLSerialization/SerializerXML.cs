@@ -19,9 +19,9 @@ namespace XMLSerialization
 
         public void Serialize(Department department)
         {
-            XmlSerializer xml = new XmlSerializer(typeof(Department));
+            var xml = new XmlSerializer(typeof(Department));
 
-            using (FileStream fs = new FileStream(_xmlFile, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(_xmlFile, FileMode.OpenOrCreate))
             {
                 xml.Serialize(fs, department);
             }
@@ -29,9 +29,9 @@ namespace XMLSerialization
 
         public Department Deserialize()
         {
-            XmlSerializer xml = new XmlSerializer(typeof(Department));
+            var xml = new XmlSerializer(typeof(Department));
 
-            using (FileStream fs = new FileStream(_xmlFile, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(_xmlFile, FileMode.OpenOrCreate))
             {
                 return (Department) xml.Deserialize(fs);
             }

@@ -9,25 +9,26 @@ namespace ISerializableSerialization
     {
         static void Main(string[] args)
         {
-            string fileName = "dataStuff.myData";
+            const string fileName = "dataStuff.myData";
+            const string firtstValue = "Hello";
+            const string secondValue = "World";
+
+            var formatter = new BinaryFormatter();
             
-            IFormatter formatter = new BinaryFormatter();
-            
-            MyItemType t1 = new MyItemType();
-            t1.FirstProperty = "Hello";
-            t1.SecondProperty = "World";
+            var myItem = new MyItemType();
+            myItem.FirstProperty = firtstValue;
+            myItem.SecondProperty = secondValue;
 
-            FileStream s1 = new FileStream(fileName, FileMode.Create);
-            formatter.Serialize(s1, t1);
-            s1.Close();
+            var fs = new FileStream(fileName, 
+                FileMode.Create);
 
-            FileStream s = new FileStream(fileName, FileMode.Open);
-            MyItemType t = (MyItemType)formatter.Deserialize(s);
-            Console.WriteLine(t.FirstProperty);
-            Console.WriteLine(t.SecondProperty);
+            formatter.Serialize(fs, myItem);
+            fs.Close();
 
-            Console.WriteLine("Done");
-            Console.ReadLine();
+            fs = new FileStream(fileName, 
+                FileMode.Open);
+
+            var deserializedItem = (MyItemType) formatter.Deserialize(fs);
         }
     }
 }

@@ -8,27 +8,27 @@ namespace BinarySerialization
     {
         static void Main(string[] args)
         {
-            string employeeName = "Dave";
+            const string employeeName = "Dave";
 
-            string departmentName = "Development department";
+            const string departmentName = "Development department";
 
-            string binaryFile = "Department.save";
+            const string binaryFile = "Department.save";
 
-            Employee employee = new Employee();
+            var employee = new Employee();
+
+            var department = new Department();
 
             employee.Name = employeeName;
-
-            Department department = new Department();
 
             department.Name = departmentName;
 
             department.Employees.Add(employee);
 
-            SerializerBinary serializerBinary = new SerializerBinary(binaryFile);
+            var serializerBinary = new SerializerBinary(binaryFile);
 
             serializerBinary.Serialize(department);
 
-            Department deserializedDepartment = serializerBinary.Deserialize();
+            var deserializedDepartment = serializerBinary.Deserialize();
         }
     }
 }
