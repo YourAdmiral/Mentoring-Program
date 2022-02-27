@@ -11,7 +11,7 @@ namespace BookLibrary
     {
         private CachedDocuments _cachedDocuments = new CachedDocuments();
 
-        private List<Document> _documents;
+        private IList<Document> _documents;
 
         public Library()
         {
@@ -23,7 +23,7 @@ namespace BookLibrary
             return _documents.FirstOrDefault(document => document.Number.Equals(number));
         }
 
-        public List<Document> GetDocumentsByNumbers(List<string> numbers)
+        public IList<Document> GetDocumentsByNumbers(IList<string> numbers)
         {
             var documents = new List<Document>();
 

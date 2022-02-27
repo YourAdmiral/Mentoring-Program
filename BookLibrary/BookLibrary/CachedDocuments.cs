@@ -23,15 +23,18 @@ namespace BookLibrary
             }
             else
             {
-                IEnumerable availableStocks = this.GetDefaultDocuments();
+                var availableStocks = this.GetDefaultDocuments();
 
-                CacheItemPolicy policy = new CacheItemPolicy
+                var policy = new CacheItemPolicy
                 {
                     Priority = CacheItemPriority.NotRemovable,
                     AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(10)
                 };
 
-                cache.Add(CacheKey, availableStocks, policy);
+                cache.Add(
+                    CacheKey, 
+                    availableStocks, 
+                    policy);
 
                 return availableStocks;
             }

@@ -10,7 +10,6 @@ namespace BookLibrary.Documents
     {
         public List<string> Authors { get; private set; }
 
-
         public CopyrightDocument(
             string number, 
             string title, 

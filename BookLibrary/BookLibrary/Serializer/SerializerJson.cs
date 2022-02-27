@@ -15,11 +15,11 @@ namespace BookLibrary.Serializer
             T obj, 
             string jsonFile)
         {
-            JsonSerializer json = new JsonSerializer();
+            var json = new JsonSerializer();
 
-            using (StreamWriter sw = new StreamWriter(jsonFile))
+            using (var sw = new StreamWriter(jsonFile))
             {
-                using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+                using (var jsonWriter = new JsonTextWriter(sw))
                 {
                     json.Serialize(jsonWriter, obj);
                 }
@@ -29,11 +29,11 @@ namespace BookLibrary.Serializer
         public T Deserialize(string jsonFile)
         {
             JObject jObj = null;
-            JsonSerializer json = new JsonSerializer();
+            var json = new JsonSerializer();
 
-            using (StreamReader sr = new StreamReader(jsonFile))
+            using (var sr = new StreamReader(jsonFile))
             {
-                using (JsonReader jsonReader = new JsonTextReader(sr))
+                using (var jsonReader = new JsonTextReader(sr))
                 {
                     jObj = json.Deserialize(jsonReader) as JObject;
                 }
