@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Documents
 {
-    public class Patent : CopyrightDocument
+    public class Magazine : Document
     {
-        public DateTime ExpirationDate { get; private set; }
+        public string Publisher { get; private set; }
 
-        public Patent(
+        public Magazine(
             string number, 
             string title, 
-            List<string> authors, 
             DateTime datePublished,
-            DateTime expirationDate)
+            string publisher) 
             : base(
                 number, 
-                title, 
-                authors, 
+                title,  
                 datePublished)
         {
-            ExpirationDate = expirationDate;
+            Publisher = publisher;
         }
     }
 }

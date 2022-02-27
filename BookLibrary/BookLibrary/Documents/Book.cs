@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Documents
 {
-    public class Book : Document
+    public class Book : CopyrightDocument
     {
         public int NumberOfPages { get; private set; }
 

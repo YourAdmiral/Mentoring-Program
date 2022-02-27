@@ -12,19 +12,15 @@ namespace BookLibrary.Documents
 
         public string Title { get; private set; }
 
-        public List<string> Authors { get; private set; }
-
         public DateTime DatePublished { get; private set; }
 
         public Document(
             string number, 
             string title, 
-            List<string> authors, 
             DateTime datePublished)
         {
             Number = number;
             Title = title;
-            Authors = authors;
             DatePublished = datePublished;
         }
     }

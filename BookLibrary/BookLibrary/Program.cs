@@ -54,6 +54,15 @@ namespace BookLibrary
 
             #endregion
 
+            #region Magazine const
+
+            const string magazineNumber = "34143232";
+            const string magazineTitle = "Daily News";
+            const string magazinePublisher = "CNN"; 
+            DateTime magazineDatePublished = DateTime.Now;
+
+            #endregion
+
             #endregion
 
             #region Documents
@@ -83,11 +92,18 @@ namespace BookLibrary
                 patentDatePublished, 
                 expirationDate);
 
+            var magazine = new Magazine(
+                magazineNumber,
+                magazineTitle,
+                magazineDatePublished,
+                magazinePublisher);
+
             var documents = new List<Document>()
             {
                 book,
                 localizedBood,
-                patent
+                patent,
+                magazine
             };
 
             #endregion
@@ -97,7 +113,9 @@ namespace BookLibrary
             var numbers = new List<string>()
             {
                 bookNumber,
-                patentNumber
+                localizedBookNumber,
+                patentNumber,
+                magazineNumber
             };
 
             var requiredDocuments = library.GetDocumentsByNumbers(numbers);
