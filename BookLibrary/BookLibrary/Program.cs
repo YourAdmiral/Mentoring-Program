@@ -12,14 +12,14 @@ namespace BookLibrary
     {
         static void Main(string[] args)
         {
-            ChachedDocuments chache = new ChachedDocuments();
-            List<Document> chachedDocuments = (List<Document>)chache.GetAvailableDocuments();
+            var cache = new CachedDocuments();
+            var cachedDocuments = (List<Document>) cache.GetAvailableDocuments();
 
-            var library = new Library(chachedDocuments);
+            var library = new Library();
 
             var numbers = new List<string>();
 
-            foreach (var document in chachedDocuments)
+            foreach (var document in cachedDocuments)
             {
                 numbers.Add(document.Number);
             }

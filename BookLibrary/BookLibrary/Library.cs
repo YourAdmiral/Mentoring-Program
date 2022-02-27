@@ -9,11 +9,13 @@ namespace BookLibrary
 {
     public class Library
     {
+        private CachedDocuments _cachedDocuments = new CachedDocuments();
+
         private List<Document> _documents;
 
-        public Library(List<Document> documents)
+        public Library()
         {
-            _documents = documents;
+            _documents = (List<Document>)_cachedDocuments.GetAvailableDocuments();
         }
 
         public Document GetDocumentByNumber(string number)

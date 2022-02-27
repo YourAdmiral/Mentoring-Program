@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookLibrary
 {
-    public class ChachedDocuments
+    public class CachedDocuments
     {
         private const string CacheKey = "availableDocuments";
 
@@ -37,7 +37,7 @@ namespace BookLibrary
             }
         }
 
-        public IEnumerable GetDefaultDocuments()
+        private IEnumerable GetDefaultDocuments()
         {
             #region Const
 
