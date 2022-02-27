@@ -11,7 +11,6 @@ namespace BookLibrary.Serializer
 {
     public class SerializerJson<T>
     {
-
         public void Serialize(
             T obj, 
             string jsonFile)
