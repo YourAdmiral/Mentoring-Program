@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Documents
 {
-    internal class Book
+    public class Book : Document
     {
+        public string ISBN { get; private set; }
+
+        public int NumberOfPages { get; private set; }
+
+        public string Publisher { get; private set; }
     }
 }

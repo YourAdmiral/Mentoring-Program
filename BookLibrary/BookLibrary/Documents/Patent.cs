@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Documents
 {
-    internal class Patent
+    public class Patent : Document
     {
+        public int Id { get; private set; }
+
+        public DateTime ExpirationDate { get; private set; }
     }
 }

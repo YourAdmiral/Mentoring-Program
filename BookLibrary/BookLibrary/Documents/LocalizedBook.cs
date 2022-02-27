@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Documents
 {
-    internal class LocalizedBook
+    public class LocalizedBook : Book
     {
+        public string LocalPublisher { get; private set; }
+
+        public string CountryOfLocalization { get; private set; }
     }
 }
