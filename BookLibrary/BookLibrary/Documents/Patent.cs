@@ -8,8 +8,21 @@ namespace BookLibrary.Documents
 {
     public class Patent : Document
     {
-        public int Id { get; private set; }
-
         public DateTime ExpirationDate { get; private set; }
+
+        public Patent(
+            string number, 
+            string title, 
+            List<string> authors, 
+            DateTime datePublished,
+            DateTime expirationDate)
+            : base(
+                number, 
+                title, 
+                authors, 
+                datePublished)
+        {
+            ExpirationDate = expirationDate;
+        }
     }
 }
