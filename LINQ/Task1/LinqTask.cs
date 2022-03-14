@@ -154,7 +154,19 @@ namespace Task1
                 throw new ArgumentNullException();
             }
 
-            return null;
+            var groups = products.GroupBy(sup => sup.Category)
+                   .Select(g => new Linq7CategoryGroup()
+                   {
+                       Category = g.First().Category,
+                       UnitsInStockGroup = g.Select(g => new Linq7UnitsInStockGroup
+                       {
+                           UnitsInStock = g.UnitsInStock,
+                           Prices = new[] { g.UnitPrice }
+                       })
+                   }
+            );
+
+            return groups;
         }
 
         public static IEnumerable<(decimal category, IEnumerable<Product> products)> Linq8(
@@ -191,7 +203,13 @@ namespace Task1
                 throw new ArgumentNullException();
             }
 
-            return null;
+            var result = suppliers.GroupBy(sup => sup.Country)
+                   .Select(grp => grp.First())
+                   .OrderBy(item => item.Country.Length)
+                   .ThenBy(item => item.Country)
+                   .ToList();
+
+            return string.Join("", result.Select(p => p.Country)); 
         }
     }
 }
