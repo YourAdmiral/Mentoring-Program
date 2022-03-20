@@ -10,13 +10,15 @@ namespace Listener
     {
         private static void Main(string[] args)
         {
+            const string localHostPrefix = "http://localhost:8888/";
+            const string myNamePrefix = "http://localhost:8888/MyName/";
             if (!HttpListener.IsSupported)
             {
                 Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
                 return;
             }
             // URI prefixes are required,
-            var prefixes = new List<string>() { "http://localhost:8888/" };
+            var prefixes = new List<string>() { localHostPrefix, myNamePrefix };
 
             // Create a listener.
             HttpListener listener = new HttpListener();
@@ -42,13 +44,27 @@ namespace Listener
                         documentContents = readStream.ReadToEnd();
                     }
                 }
-                Console.WriteLine($"Recived request for {request.Url}");
-                Console.WriteLine(documentContents);
 
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
+
                 // Construct a response.
-                string responseString = "<HTML><BODY> Hello world!</BODY></HTML>";
+                string responseString;
+
+                Console.WriteLine($"Recived request for {request.Url}");
+
+                if (ParseRequest(request) != myNamePrefix)
+                {
+                    Console.WriteLine(documentContents);
+
+                    responseString = "<HTML><BODY>Hello world!</BODY></HTML>";
+                }
+                else
+                {
+                    responseString = GetMyName();
+                }
+
+
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.
                 response.ContentLength64 = buffer.Length;
@@ -58,6 +74,16 @@ namespace Listener
                 output.Close();
             }
             listener.Stop();
+        }
+
+        private static string GetMyName()
+        {
+            return "<HTML><BODY>Kiryl</BODY></HTML>"; ;
+        }
+
+        private static string ParseRequest(HttpListenerRequest request)
+        {
+            return request.Url.ToString();
         }
     }
 }
