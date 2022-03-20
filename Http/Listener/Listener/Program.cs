@@ -17,6 +17,8 @@ namespace Listener
             const string code3Prefix = "http://localhost:8888/Redirection/";
             const string code4Prefix = "http://localhost:8888/ClientError/";
             const string code5Prefix = "http://localhost:8888/ServerError/";
+            const string robertPrefix = "http://localhost:8888/MyNameByHeader/Robert/";
+            const string williamPrefix = "http://localhost:8888/MyNameByHeader/William/";
 
             if (!HttpListener.IsSupported)
             {
@@ -33,7 +35,9 @@ namespace Listener
                 code2Prefix,
                 code3Prefix,
                 code4Prefix,
-                code5Prefix
+                code5Prefix,
+                robertPrefix,
+                williamPrefix
             };
 
             // Create a listener.
@@ -99,6 +103,14 @@ namespace Listener
                         responseString = GetServerError();
                         break;
 
+                    case robertPrefix:
+                        responseString = GetHeaderRobert();
+                        break;
+
+                    case williamPrefix:
+                        responseString = GetHeaderWilliam();
+                        break;
+
                     default:
                         responseString = "<HTML><BODY>Hello world!</BODY></HTML>";
                         break;
@@ -146,6 +158,16 @@ namespace Listener
         private static string GetServerError()
         {
             return "<HTML><BODY>500</BODY></HTML>";
+        }
+
+        private static string GetHeaderRobert()
+        {
+            return "<HTML><BODY>Robert</BODY></HTML>";
+        }
+
+        private static string GetHeaderWilliam()
+        {
+            return "<HTML><BODY>William</BODY></HTML>";
         }
 
         private static string ParseRequest(HttpListenerRequest request)

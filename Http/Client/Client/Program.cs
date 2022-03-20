@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Client
@@ -32,6 +34,8 @@ namespace Client
                 ClientError();
 
                 ServerError();
+
+                GetMyNameByHeader("http://localhost:8888/MyNameByHeader/");
             }
             catch (HttpRequestException e)
             {
@@ -113,6 +117,49 @@ namespace Client
             // string responseBody = await client.GetStringAsync(uri);
 
             Console.WriteLine(responseBody);
+        }
+
+        static async Task GetMyNameByHeader(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage response = await client.GetAsync(url))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string myContent = await content.ReadAsStringAsync();
+                        HttpContentHeaders headers = content.Headers;
+
+                        Console.WriteLine(content);
+                    }
+                }
+            }
+        }
+
+        static async Task PostMyNameByHeader(string url)
+        {
+            IEnumerable<KeyValuePair<string,string>> queries = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("query1","William"),
+                new KeyValuePair<string, string>("query2","Robert")
+            };
+
+            HttpContent httpContent = new FormUrlEncodedContent(queries);
+
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage response = await client.PostAsync(url, httpContent))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string myContent = await content.ReadAsStringAsync();
+
+                        HttpContentHeaders headers = content.Headers;
+
+                        Console.WriteLine(myContent);
+                    }
+                }
+            }
         }
     }
 }
