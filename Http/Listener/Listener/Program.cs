@@ -22,7 +22,7 @@ namespace Listener
 
             if (!HttpListener.IsSupported)
             {
-                Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
+                Console.WriteLine("Required to use the HttpListener class.");
                 return;
             }
 

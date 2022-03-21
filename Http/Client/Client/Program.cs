@@ -17,25 +17,37 @@ namespace Client
             {
                 HttpResponseMessage response = await client.GetAsync("http://localhost:8888/");
                 response.EnsureSuccessStatusCode();
+
                 string responseBody = await response.Content.ReadAsStringAsync();
                 // Above three lines can be replaced with new helper method below
                 // string responseBody = await client.GetStringAsync(uri);
 
                 Console.WriteLine(responseBody);
 
-                CheckMyName();
+                const string myNameByHeader = "http://localhost:8888/MyNameByHeader/";
+                const string myName = "http://localhost:8888/MyName/";
+                const string information = "http://localhost:8888/Information/";
+                const string success = "http://localhost:8888/Success/";
+                const string redirection = "http://localhost:8888/Redirection/";
+                const string clientError = "http://localhost:8888/ClientError/";
+                const string serverError = "http://localhost:8888/ServerError/";
 
-                Information();
+                var urls = new List<string>()
+                {
+                    myName,
+                    information,
+                    success,
+                    redirection,
+                    clientError,
+                    serverError
+                };
 
-                Success();
+                foreach (var url in urls)
+                {
+                    CheckUrl(url);
+                }
 
-                Redirection();
-
-                ClientError();
-
-                ServerError();
-
-                GetMyNameByHeader("http://localhost:8888/MyNameByHeader/");
+                GetMyNameByHeader(myNameByHeader);
             }
             catch (HttpRequestException e)
             {
@@ -44,74 +56,11 @@ namespace Client
             }
         }
 
-        static async Task CheckMyName()
+        static async Task CheckUrl(string url)
         {
-            // Call asynchronous network methods in a try/catch block to handle exceptions.
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync("http://localhost:8888/MyName/");
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                // Above three lines can be replaced with new helper method below
-                // string responseBody = await client.GetStringAsync(uri);
-
-                Console.WriteLine(responseBody);
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-            }
-        }
-
-        static async Task Information()
-        {
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8888/Information/");
+            HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            // Above three lines can be replaced with new helper method below
-            // string responseBody = await client.GetStringAsync(uri);
 
-            Console.WriteLine(responseBody);
-        }
-
-        static async Task Success()
-        {
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8888/Success/");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            // Above three lines can be replaced with new helper method below
-            // string responseBody = await client.GetStringAsync(uri);
-
-            Console.WriteLine(responseBody);
-        }
-
-        static async Task Redirection()
-        {
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8888/Redirection/");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            // Above three lines can be replaced with new helper method below
-            // string responseBody = await client.GetStringAsync(uri);
-
-            Console.WriteLine(responseBody);
-        }
-
-        static async Task ClientError()
-        {
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8888/ClientError/");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            // Above three lines can be replaced with new helper method below
-            // string responseBody = await client.GetStringAsync(uri);
-
-            Console.WriteLine(responseBody);
-        }
-
-        static async Task ServerError()
-        {
-            HttpResponseMessage response = await client.GetAsync("http://localhost:8888/ServerError/");
-            response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             // Above three lines can be replaced with new helper method below
             // string responseBody = await client.GetStringAsync(uri);
