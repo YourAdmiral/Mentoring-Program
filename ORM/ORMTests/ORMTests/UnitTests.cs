@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using ORMDapper;
 using ORMFundamentals.Context;
 using ORMFundamentals.Models;
 using ORMFundamentals.Services;
@@ -12,7 +13,6 @@ namespace ORMTests
     [TestClass]
     public class UnitTests
     {
-        [TestMethod]
         public void TestMethod()
         {
             Product product = new Product()
@@ -138,6 +138,65 @@ namespace ORMTests
             CollectionAssert.AreEqual(
                 expectedOrders.Select(o => o.Status).ToList(),
                 receivedOrders.Select(o => o.Status).ToList());
+        }
+
+        [TestMethod]
+        public void GetByIdOrder_ReturnsExpectedOrderWithId2_UsingDapper()
+        {
+            var orderService = new ORMDapper.Services.OrderService();
+
+            var expectedOrder = new Order()
+            {
+                Id = 5,
+                Status = OrderStatus.InProgress,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 3
+            };
+
+            var receivedOrder = orderService.GetById(expectedOrder.Id);
+
+            var ord = orderService.GetAll();
+
+            Assert.AreEqual(
+              expectedOrder.Id,
+               receivedOrder.Id);
+        }
+
+        [TestMethod]
+        public void GetAllOrders_ReturnsExpectedOrdersWithId5And10_UsingDapper()
+        {
+            var orderService = new ORMDapper.Services.OrderService();
+
+            var expectedOrder1 = new Order()
+            {
+                Id = 5,
+                Status = OrderStatus.InProgress,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 1
+            };
+
+            var expectedOrder2 = new Order()
+            {
+                Id = 10,
+                Status = OrderStatus.Done,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 1
+            };
+
+            var expectedOrders = new List<Order>()
+            {
+                expectedOrder1,
+                expectedOrder2
+            };
+
+            var receivedOrders = orderService.GetAll();
+
+            CollectionAssert.AreEqual(
+                expectedOrders.Select(o => o.Id).ToList(),
+                receivedOrders.Select(o => o.Id).ToList());
         }
     }
 }
