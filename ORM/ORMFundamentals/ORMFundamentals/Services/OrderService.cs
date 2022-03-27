@@ -24,6 +24,8 @@ namespace ORMFundamentals.Services
 
             if (order != null)
                 _dbContext.Orders.Remove(order);
+
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Order> GetAll()
@@ -54,11 +56,15 @@ namespace ORMFundamentals.Services
         public void Insert(Order obj)
         {
             _dbContext.Orders.Add(obj);
+
+            _dbContext.SaveChanges();
         }
 
         public void Update(Order obj)
         {
             _dbContext.Entry(obj).State = EntityState.Modified;
+
+            _dbContext.SaveChanges();
         }
     }
 }

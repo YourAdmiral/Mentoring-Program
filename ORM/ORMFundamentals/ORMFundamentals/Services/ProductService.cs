@@ -24,6 +24,8 @@ namespace ORMFundamentals.Services
 
             if (product != null)
                 _dbContext.Products.Remove(product);
+
+            _dbContext.SaveChanges();
         }
 
         public void DeleteByName(string name)
@@ -37,6 +39,8 @@ namespace ORMFundamentals.Services
                     _dbContext.Products.Remove(product);
                 }
             }
+
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Product> GetAll()
@@ -52,11 +56,15 @@ namespace ORMFundamentals.Services
         public void Insert(Product obj)
         {
             _dbContext.Products.Add(obj);
+
+            _dbContext.SaveChanges();
         }
 
         public void Update(Product obj)
         {
             _dbContext.Entry(obj).State = EntityState.Modified;
+
+            _dbContext.SaveChanges();
         }
     }
 }
