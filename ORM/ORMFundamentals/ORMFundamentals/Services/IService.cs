@@ -8,7 +8,7 @@ namespace ORMFundamentals.Services
 {
     public interface IService<T>
     {
-        IEnumerable<T> Get();
+        IEnumerable<T> GetAll();
         T GetById(int id);
         void Insert(T obj);
         void Update(T obj);

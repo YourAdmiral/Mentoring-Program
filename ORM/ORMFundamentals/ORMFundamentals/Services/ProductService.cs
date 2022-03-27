@@ -1,6 +1,8 @@
-﻿using ORMFundamentals.Models;
+﻿using ORMFundamentals.Context;
+using ORMFundamentals.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,29 +11,52 @@ namespace ORMFundamentals.Services
 {
     public class ProductService : IService<Product>
     {
-        public void Delete(int id)
+        private MainDbContext _dbContext;
+
+        public ProductService(MainDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public IEnumerable<Product> Get()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Product product = _dbContext.Products.Find(id);
+
+            if (product != null)
+                _dbContext.Products.Remove(product);
+        }
+
+        public void DeleteByName(string name)
+        {
+            List<Product> products = _dbContext.Products.Where(product => product.Name == name).ToList();
+
+            if (products != null)
+            {
+                foreach (var product in products)
+                {
+                    _dbContext.Products.Remove(product);
+                }
+            }
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _dbContext.Products;
         }
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Products.Find(id);
         }
 
         public void Insert(Product obj)
         {
-            throw new NotImplementedException();
+            _dbContext.Products.Add(obj);
         }
 
         public void Update(Product obj)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(obj).State = EntityState.Modified;
         }
     }
 }

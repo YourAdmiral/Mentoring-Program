@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,34 +13,52 @@ namespace ORMFundamentals.Services
     {
         private MainDbContext _dbContext;
 
-        public OrderService(MainDbContext context)
+        public OrderService(MainDbContext dbContext)
         {
-            _dbContext = context;
+            _dbContext = dbContext;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Order order = _dbContext.Orders.Find(id);
+
+            if (order != null)
+                _dbContext.Orders.Remove(order);
         }
 
-        public IEnumerable<Order> Get()
+        public IEnumerable<Order> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.Orders;
+        }
+
+        public IEnumerable<Order> GetAllByMonth(int month)
+        {
+            return _dbContext.Orders.Where(order => order.CreatedDate.Month == month);
+        }
+
+        public IEnumerable<Order> GetAllByYear(int year)
+        {
+            return _dbContext.Orders.Where(order => order.CreatedDate.Year == year);
+        }
+
+        public IEnumerable<Order> GetAllByStatus(OrderStatus status)
+        {
+            return _dbContext.Orders.Where(order => order.Status == status);
         }
 
         public Order GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Orders.Find(id);
         }
 
         public void Insert(Order obj)
         {
-            throw new NotImplementedException();
+            _dbContext.Orders.Add(obj);
         }
 
         public void Update(Order obj)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(obj).State = EntityState.Modified;
         }
     }
 }
