@@ -20,7 +20,7 @@ namespace ORMFundamentals.Services
 
         public void Delete(int id)
         {
-            Order order = _dbContext.Orders.Find(id);
+            var order = _dbContext.Orders.Find(id);
 
             if (order != null)
                 _dbContext.Orders.Remove(order);
@@ -55,6 +55,11 @@ namespace ORMFundamentals.Services
 
         public void Insert(Order obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _dbContext.Orders.Add(obj);
 
             _dbContext.SaveChanges();
@@ -62,6 +67,11 @@ namespace ORMFundamentals.Services
 
         public void Update(Order obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _dbContext.Entry(obj).State = EntityState.Modified;
 
             _dbContext.SaveChanges();

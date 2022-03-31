@@ -16,18 +16,20 @@ namespace ORMDapper.Services
 
         public void Delete(int id)
         {
-            OpenConnection();
+            db.Open();
 
             db.Execute(
                 $@"DELETE FROM Orders WHERE Id = {id}",
                 commandType: CommandType.Text);
+
+            db.Close();
         }
 
         public IEnumerable<Order> GetAll()
         {
-            OpenConnection();
+            db.Open();
 
-            return db.Query<Order>(
+            var orders = db.Query<Order>(
                 @"SELECT 
                     Id, 
                     Status, 
@@ -36,13 +38,17 @@ namespace ORMDapper.Services
                     ProductId 
                     FROM Orders",
                 commandType: CommandType.Text);
+
+            db.Close();
+
+            return orders;
         }
 
         public IEnumerable<Order> GetAllByStatus(OrderStatus status)
         {
-            OpenConnection();
+            db.Open();
 
-            return db.Query<Order>(
+            var orders = db.Query<Order>(
                 $@"SELECT 
                     Id, 
                     Status, 
@@ -52,13 +58,17 @@ namespace ORMDapper.Services
                     FROM Orders 
                     WHERE Status = {status}",
                 commandType: CommandType.Text);
+
+            db.Close();
+
+            return orders;
         }
 
         public Order GetById(int id)
         {
-            OpenConnection();
+            db.Open();
 
-            return db.Query<Order>(
+            Order order = db.Query<Order>(
                 $@"SELECT 
                     Id, 
                     Status, 
@@ -68,11 +78,20 @@ namespace ORMDapper.Services
                     FROM Orders 
                     WHERE Id = {id}",
                 commandType: CommandType.Text).FirstOrDefault();
+
+            db.Close();
+
+            return order;
         }
 
         public void Insert(Order obj)
         {
-            OpenConnection();
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            db.Open();
 
             db.Execute(
                 $@"INSERT INTO Orders 
@@ -88,11 +107,18 @@ namespace ORMDapper.Services
                 {obj.UpdatedDate}, 
                 {obj.ProductId})",
                 commandType: CommandType.Text);
+
+            db.Close();
         }
 
         public void Update(Order obj)
         {
-            OpenConnection();
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            db.Open();
 
             db.Execute(
                 $@"UPDATE Orders 
@@ -103,15 +129,9 @@ namespace ORMDapper.Services
                 UpdatedDate = {obj.UpdatedDate}, 
                 ProductId = {obj.ProductId})
                 WHERE Id = {obj.Id}", 
-                commandType: CommandType.Text); 
-        }
+                commandType: CommandType.Text);
 
-        private void OpenConnection()
-        {
-            if (db.State == ConnectionState.Closed)
-            {
-                db.Open();
-            }
+            db.Close();
         }
     }
 }

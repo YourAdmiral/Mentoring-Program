@@ -13,43 +13,6 @@ namespace ORMTests
     [TestClass]
     public class UnitTests
     {
-        public void TestMethod()
-        {
-            Product product = new Product()
-            {
-                Id = 1,
-                Name = "Carrot",
-                Description = "Some information",
-                Weight = 2,
-                Height = 3,
-                Width = 2,
-                Length = 4
-            };
-
-            Order order = new Order()
-            {
-                Id = 1,
-                Status = OrderStatus.Done,
-                CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now,
-                ProductId = product.Id,
-                Product = product
-            };
-
-            //var dbContext = new MainDbContext();
-            //var orderService = new OrderService(dbContext);
-            //var productService = new ProductService(dbContext);
-
-            //productService.Insert(product);
-            //orderService.Insert(order);
-
-            //var receivedProducts = productService.GetAll();
-            //var receivedOrder = orderService.GetById(2);
-
-            //orderService.Delete(2);
-            //productService.Delete(3);
-        }
-
         [TestMethod]
         public void GetAllProducts_ReturnsExpectedProducts()
         {

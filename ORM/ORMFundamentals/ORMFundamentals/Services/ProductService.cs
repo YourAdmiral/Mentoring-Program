@@ -30,6 +30,11 @@ namespace ORMFundamentals.Services
 
         public void DeleteByName(string name)
         {
+            if (String.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException();
+            }
+
             List<Product> products = _dbContext.Products.Where(product => product.Name == name).ToList();
 
             if (products != null)
@@ -55,6 +60,11 @@ namespace ORMFundamentals.Services
 
         public void Insert(Product obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _dbContext.Products.Add(obj);
 
             _dbContext.SaveChanges();
@@ -62,6 +72,11 @@ namespace ORMFundamentals.Services
 
         public void Update(Product obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _dbContext.Entry(obj).State = EntityState.Modified;
 
             _dbContext.SaveChanges();
