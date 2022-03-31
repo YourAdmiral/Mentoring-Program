@@ -170,7 +170,7 @@ namespace ADOLibrary
                 @Height,
                 @Width,
                 @Length);
-SELECT          @ID = SCOPE_IDENTITY()";
+                SELECT          @ID = SCOPE_IDENTITY()";
 
             using (var connection = new SqlConnection(_connectionString))
             {

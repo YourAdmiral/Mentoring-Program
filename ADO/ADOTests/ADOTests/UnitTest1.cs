@@ -11,37 +11,6 @@ namespace ADOTests
     public class UnitTests
     {
         [TestMethod]
-        public void TestMethod()
-        {
-            //Product product = new Product()
-            //{
-            //    Id = 3,
-            //    Name = "Phone",
-            //    Description = "info",
-            //    Weight = 6,
-            //    Height = 8,
-            //    Width = 8,
-            //    Length = 8
-            //};
-
-            //var productService = new ProductService();
-            //productService.DeleteByName("Carrot");
-
-            //var dbContext = new MainDbContext();
-            //var orderService = new OrderService(dbContext);
-            //var productService = new ProductService(dbContext);
-
-            //productService.Insert(product);
-            //orderService.Insert(order);
-
-            //var receivedProducts = productService.GetAll();
-            //var receivedOrder = orderService.GetById(2);
-
-            //orderService.Delete(2);
-            //productService.Delete(3);
-        }
-
-        [TestMethod]
         public void GetAllProducts_ReturnsExpectedProducts()
         {
             var productService = new ProductService();
@@ -70,75 +39,71 @@ namespace ADOTests
         }
 
         [TestMethod]
-        public void GetByIdOrder_ReturnsExpectedOrderWithId2()
+        public void GetByIdOrder_ReturnsExpectedOrderWithId5()
         {
-            //var dbContext = new MainDbContext();
-            //var orderService = new OrderService(dbContext);
+            var orderService = new OrderService();
 
-            //var expectedOrder = new Order()
-            //{
-            //    Id = 2,
-            //    Status = OrderStatus.InProgress,
-            //    CreatedDate = DateTime.Now,
-            //    UpdatedDate = DateTime.Now,
-            //    ProductId = 3
-            //};
+            var expectedOrder = new Order()
+            {
+                Id = 5,
+                Status = OrderStatus.InProgress,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 1
+            };
 
-            //var receivedOrder = orderService.GetById(expectedOrder.Id);
+            var receivedOrder = orderService.GetById(expectedOrder.Id);
 
-            //Assert.AreEqual(
-            //    expectedOrder.Id,
-            //    receivedOrder.Id);
+            Assert.AreEqual(
+                expectedOrder.Id,
+                receivedOrder.Id);
         }
 
         [TestMethod]
         public void GetAllByStatusOrders_ReturnsExpectedOrdersWithStatus2()
         {
-            //var dbContext = new MainDbContext();
-            //var orderService = new OrderService(dbContext);
+            var orderService = new OrderService();
 
-            //var expectedOrder = new Order()
-            //{
-            //    Id = 2,
-            //    Status = OrderStatus.InProgress,
-            //    CreatedDate = DateTime.Now,
-            //    UpdatedDate = DateTime.Now,
-            //    ProductId = 3
-            //};
+            var expectedOrder = new Order()
+            {
+                Id = 5,
+                Status = OrderStatus.InProgress,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 1
+            };
 
-            //var expectedOrders = new List<Order>()
-            //{
-            //    expectedOrder
-            //};
+            var expectedOrders = new List<Order>()
+            {
+                expectedOrder
+            };
 
-            //var receivedOrders = orderService.GetAllByStatus(expectedOrder.Status);
+            var receivedOrders = orderService.GetAllByStatus(expectedOrder.Status);
 
-            //CollectionAssert.AreEqual(
-            //    expectedOrders.Select(o => o.Status).ToList(),
-            //    receivedOrders.Select(o => o.Status).ToList());
+            CollectionAssert.AreEqual(
+                expectedOrders.Select(o => o.Status).ToList(),
+                receivedOrders.Select(o => o.Status).ToList());
         }
 
         [TestMethod]
-        public void GetByIdOrder_ReturnsExpectedOrderWithId2_UsingDapper()
+        public void GetByIdOrder_ReturnsExpectedOrderWithId10_UsingDapper()
         {
-            //var orderService = new ORMDapper.Services.OrderService();
+            var orderService = new OrderService();
 
-            //var expectedOrder = new Order()
-            //{
-            //    Id = 5,
-            //    Status = OrderStatus.InProgress,
-            //    CreatedDate = DateTime.Now,
-            //    UpdatedDate = DateTime.Now,
-            //    ProductId = 3
-            //};
+            var expectedOrder = new Order()
+            {
+                Id = 10,
+                Status = OrderStatus.Done,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                ProductId = 1
+            };
 
-            //var receivedOrder = orderService.GetById(expectedOrder.Id);
+            var receivedOrder = orderService.GetById(expectedOrder.Id);
 
-            //var ord = orderService.GetAll();
-
-            //Assert.AreEqual(
-            //  expectedOrder.Id,
-            //   receivedOrder.Id);
+            Assert.AreEqual(
+              expectedOrder.Id,
+               receivedOrder.Id);
         }
 
         [TestMethod]
