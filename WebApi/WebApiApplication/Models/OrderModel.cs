@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using WebApiApplication.EF;
 
 namespace WebApiApplication.Models
 {
@@ -9,7 +10,7 @@ namespace WebApiApplication.Models
         public int Id { get; set; }
 
         [JsonProperty("orderstatus")]
-        public int Status { get; set; }
+        public OrderStatus? Status { get; set; }
 
         [JsonProperty("createddate")]
         public DateTime CreatedDate { get; set; }

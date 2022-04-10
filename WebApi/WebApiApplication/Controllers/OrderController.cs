@@ -53,7 +53,8 @@ namespace WebApiApplication.Controllers
             }
 
             var order = new Order();
-            order.Status = orderModel.Status;
+            Enum.TryParse(orderModel.Status.ToString(), out OrderStatus status);
+            order.Status = status;
             order.CreatedDate = orderModel.CreatedDate;
             order.UpdatedDate = orderModel.UpdatedDate;
             order.ProductId = orderModel.ProductId;
@@ -80,7 +81,8 @@ namespace WebApiApplication.Controllers
                 return BadRequest("Product not found");
             }
 
-            order.Status = orderModel.Status;
+            Enum.TryParse(orderModel.Status.ToString(), out OrderStatus status);
+            order.Status = status;
             order.CreatedDate = orderModel.CreatedDate;
             order.UpdatedDate = orderModel.UpdatedDate;
             order.ProductId = orderModel.ProductId;

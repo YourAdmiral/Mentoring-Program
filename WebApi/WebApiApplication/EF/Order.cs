@@ -5,10 +5,21 @@ using System.Collections.Generic;
 
 namespace WebApiApplication.EF
 {
+    public enum OrderStatus
+    {
+        NotStarted,
+        Loading,
+        InProgress,
+        Arrived,
+        Unloading,
+        Cancelled,
+        Done
+    }
+
     public partial class Order
     {
         public int Id { get; set; }
-        public int Status { get; set; }
+        public OrderStatus Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int ProductId { get; set; }
