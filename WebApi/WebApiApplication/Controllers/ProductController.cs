@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApiApplication.EF;
+using WebApiApplication.Models;
 
 namespace WebApiApplication.Controllers
 {
@@ -38,6 +39,76 @@ namespace WebApiApplication.Controllers
             {
                 return BadRequest("Product was not found");
             }
+
+            return Ok(product);
+        }
+
+        [Route("Create")]
+        [HttpPost]
+        public IActionResult Create(ProductModel productModel)
+        {
+            if (productModel == null)
+            {
+                return BadRequest("No Product specified");
+            }
+
+            var product = new Product();
+            product.Name = productModel.Name;
+            product.Description = productModel.Description;
+            product.Weight = productModel.Weight;
+            product.Height = productModel.Height;
+            product.Width = productModel.Width;
+            product.Length = productModel.Length;
+
+            _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
+
+            return Ok(product);
+        }
+
+        [Route("Update")]
+        [HttpPut]
+        public IActionResult Update(ProductModel productModel)
+        {
+            if (productModel.Id <= 0)
+            {
+                return BadRequest("No Id specified");
+            }
+
+            var product = _dbContext.Products.Find(productModel.Id);
+
+            if (product is null)
+            {
+                return BadRequest("Product not found");
+            }
+
+            product.Name = productModel.Name;
+            product.Description = productModel.Description;
+            product.Weight = productModel.Weight;
+            product.Height = productModel.Height;
+            product.Width = productModel.Width;
+            product.Length = productModel.Length;
+            product.Orders = null;
+
+            _dbContext.Products.Attach(product);
+            _dbContext.SaveChanges();
+
+            return Ok(product);
+        }
+
+        [Route("Delete/{id}")]
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var product = _dbContext.Products.Find(id);
+
+            if (product is null)
+            {
+                return BadRequest("No Data was found");
+            }
+
+            _dbContext.Products.Remove(product);
+            _dbContext.SaveChanges();
 
             return Ok(product);
         }

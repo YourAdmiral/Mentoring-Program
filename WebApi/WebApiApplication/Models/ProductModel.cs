@@ -8,22 +8,25 @@ namespace WebApiApplication.Models
 {
     public class ProductModel
     {
-        [JsonProperty("ProductName")]
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("ProductDescription")]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("ProductWeight")]
+        [JsonProperty("weight")]
         public int Weight { get; set; }
 
-        [JsonProperty("ProductHeight")]
+        [JsonProperty("height")]
         public int Height { get; set; }
 
-        [JsonProperty("ProductWidth")]
+        [JsonProperty("width")]
         public int Width { get; set; }
 
-        [JsonProperty("ProductLength")]
+        [JsonProperty("length")]
         public int Length { get; set; }
     }
 }
