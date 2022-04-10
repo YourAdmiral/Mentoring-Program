@@ -88,7 +88,6 @@ namespace WebApiApplication.Controllers
             product.Height = productModel.Height;
             product.Width = productModel.Width;
             product.Length = productModel.Length;
-            product.Orders = null;
 
             _dbContext.Products.Attach(product);
             _dbContext.SaveChanges();
