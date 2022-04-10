@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using WebApiApplication.EF;
 using WebApiApplication.Models;
+using WebApiApplication.Pagination;
 
 namespace WebApiApplication.Controllers
 {
@@ -110,6 +113,38 @@ namespace WebApiApplication.Controllers
             _dbContext.SaveChanges();
 
             return Ok(product);
+        }
+
+
+        [HttpGet("{productId}/orders")]
+        public async Task<IActionResult> Get(
+            [FromRoute] int productId, 
+            [FromQuery] PaginationParams @params)
+        {
+            var product = _dbContext.Products.FindAsync(productId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var orders = _dbContext.Orders.Where(o => o.ProductId == productId)
+                .OrderBy(o => o.Id);
+
+            var paginationMetadata = new PaginationMetadata(orders.Count(), @params.Page, @params.ItemsPerPage);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+
+            var items = await orders.Skip((@params.Page - 1) * @params.ItemsPerPage)
+                .Take(@params.ItemsPerPage)
+                .ToListAsync();
+
+            return Ok(orders.Select(o=>new OrderModel
+            {
+                Id = o.Id,
+                Status = o.Status,
+                CreatedDate = o.CreatedDate,
+                UpdatedDate = o.UpdatedDate,
+                ProductId = o.ProductId
+            }));
         }
     }
 }
